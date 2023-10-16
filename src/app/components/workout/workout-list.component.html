@@ -1,0 +1,185 @@
+<div class="text-center">
+  <button
+    type="submit"
+    class="btn btn-primary mb-5"
+    (click)="openWorkoutModal()"
+  >
+    Add Workout
+  </button>
+</div>
+
+<div *ngIf="workouts.length === 0; else workoutsList">
+  <h3 class="text-center">No workouts have been added yet.</h3>
+</div>
+
+<ng-template #workoutsList>
+  <div *ngFor="let workout of workouts">
+    <h3 class="text-center mb-4">
+      <strong>{{ workout.title }}</strong>
+      <button class="btn btn-danger ms-4" (click)="deleteWorkout(workout._id)">
+        Delete Workout
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary ms-3"
+        (click)="openExerciseModal(workout._id)"
+      >
+        Add Exercise
+      </button>
+    </h3>
+    <div class="text-center row m-4">
+      <div></div>
+      <div
+        class="col-12 col-md-6 col-lg-4 card custom-card p-0"
+        *ngFor="let exercise of workout.exercises"
+      >
+        <div class="card-header bg-secondary text-light mb-2">
+          <h5 class="m-3">
+            <strong>{{ exercise.title }}</strong>
+          </h5>
+        </div>
+
+        <p><strong>Sets:</strong> {{ exercise.sets }}</p>
+
+        <strong>Reps Per Set:</strong>
+        <p>{{ exercise.reps | formatWithCommasAndSpaces }}</p>
+
+        <strong>Weight Per Rep:</strong>
+        <p>{{ exercise.weight | formatWithCommasAndSpaces }}</p>
+        <div class="text-center">
+          <button
+            class="btn btn-danger mb-3"
+            (click)="deleteExercise(workout._id, exercise._id)"
+          >
+            Delete Exercise
+          </button>
+        </div>
+      </div>
+      <div
+        class="modal blur-modal"
+        tabindex="-1"
+        role="dialog"
+        id="exerciseModal"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add New Exercise</h5>
+              <button
+                type="button"
+                class="close btn btn-lg"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="closeExerciseModal()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="exerciseForm">
+                <h5 class="mb-3">Add New Exercise</h5>
+                <div class="form-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="title"
+                    placeholder="Enter exercise title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="sets"
+                    placeholder="Enter number of sets"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="reps"
+                    placeholder="Enter number of reps per set (e.g. 10, 9, 8)"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="weight"
+                    placeholder="Enter weight for each rep (e.g. 100, 95, 90)"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="addExercise()"
+              >
+                Add Exercise
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-dismiss="modal"
+                (click)="closeExerciseModal()"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="modal blur-modal" tabindex="-1" role="dialog" id="workoutModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Workout</h5>
+        <button
+          type="button"
+          class="close btn btn-lg"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeWorkoutModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="workoutForm">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+            placeholder="Enter workout title"
+            required
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+          Add Workout
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="closeWorkoutModal()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

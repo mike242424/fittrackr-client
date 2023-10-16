@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { WorkoutService } from '../workout.service';
-import { ExerciseService } from '../exercise.service';
+import { WorkoutService } from '../../services/workout.service';
+import { ExerciseService } from '../../services/exercise.service';
 
 @Component({
   selector: 'app-workout-list',
@@ -12,8 +12,10 @@ export class WorkoutListComponent implements OnInit {
   workouts: any[] = [];
   workoutForm: FormGroup;
   exerciseForm: FormGroup;
-  showModal: boolean = false;
-exercise: any;
+  showModal = false;
+  exercise: any;
+  dataLoaded = false;
+  currentWorkoutId: number = 0;
 
   constructor(
     private workoutService: WorkoutService,
@@ -44,9 +46,11 @@ exercise: any;
         } else {
           console.error('Invalid data format for workouts');
         }
+        this.dataLoaded = true;
       },
       (error) => {
         console.error('Error fetching workouts: ', error);
+        this.dataLoaded = true;
       }
     );
   }
@@ -68,6 +72,8 @@ exercise: any;
         console.error('Error creating workout', error);
       }
     );
+
+    this.closeWorkoutModal();
   }
 
   deleteWorkout(workoutId: number) {
@@ -81,7 +87,7 @@ exercise: any;
     );
   }
 
-  addExercise(workoutId: number) {
+  addExercise() {
     if (this.exerciseForm.invalid) {
       return;
     }
@@ -105,8 +111,9 @@ exercise: any;
       weight: weight,
     };
 
+    // Use this.currentWorkoutId to add exercise to the correct workout
     this.exerciseService
-      .addExerciseToWorkout(workoutId, exerciseData)
+      .addExerciseToWorkout(this.currentWorkoutId, exerciseData)
       .subscribe(
         (response) => {
           this.getWorkouts();
@@ -121,11 +128,41 @@ exercise: any;
   deleteExercise(workoutId: number, exerciseId: number) {
     this.exerciseService.deleteExercise(workoutId, exerciseId).subscribe(
       (response) => {
-        this.getWorkouts(); 
+        this.getWorkouts();
       },
       (error) => {
         console.error('Error deleting exercise', error);
       }
     );
+  }
+
+  openWorkoutModal() {
+    const workoutModalDiv = document.getElementById('workoutModal');
+    if (workoutModalDiv != null) {
+      workoutModalDiv.style.display = 'block';
+    }
+  }
+
+  closeWorkoutModal() {
+    const workoutModalDiv = document.getElementById('workoutModal');
+    if (workoutModalDiv != null) {
+      workoutModalDiv.style.display = 'none';
+    }
+  }
+
+  openExerciseModal(workoutId: number) {
+    this.currentWorkoutId = workoutId;
+
+    const exerciseModalDiv = document.getElementById('exerciseModal');
+    if (exerciseModalDiv != null) {
+      exerciseModalDiv.style.display = 'block';
+    }
+  }
+
+  closeExerciseModal() {
+    const exerciseModalDiv = document.getElementById('exerciseModal');
+    if (exerciseModalDiv != null) {
+      exerciseModalDiv.style.display = 'none';
+    }
   }
 }
