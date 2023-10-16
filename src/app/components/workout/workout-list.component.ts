@@ -111,7 +111,6 @@ export class WorkoutListComponent implements OnInit {
       weight: weight,
     };
 
-    // Use this.currentWorkoutId to add exercise to the correct workout
     this.exerciseService
       .addExerciseToWorkout(this.currentWorkoutId, exerciseData)
       .subscribe(
