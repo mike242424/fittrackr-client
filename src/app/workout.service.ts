@@ -13,4 +13,13 @@ export class WorkoutService {
   getWorkouts(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+
+  createWorkout(workoutData: { title: string }): Observable<any> {
+    return this.http.post(this.apiUrl, workoutData);
+  }
+
+  deleteWorkout(workoutId: number): Observable<any> {
+    const deleteUrl = `${this.apiUrl}/${workoutId}`;
+    return this.http.delete(deleteUrl);
+  }
 }
