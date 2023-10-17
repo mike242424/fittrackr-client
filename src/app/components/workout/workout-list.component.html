@@ -8,45 +8,47 @@
   <h1 class="text-center">No workouts have been added yet</h1>
 </div>
 
-
 <div *ngIf="dataLoaded && workouts.length > 0">
   <ng-container *ngFor="let workout of workouts">
     <h1 class="text-center mb-4 workout-title">
       <strong>{{ workout.title }}</strong>
-      <button
-        type="submit"
-        class="btn btn-primary ms-3"
-        (click)="openExerciseModal(workout._id)"
-      >
-        Add Exercise
-      </button>
-      <button class="btn btn-danger ms-3" (click)="deleteWorkout(workout._id)">
-        Delete Workout
-      </button>
-      
+      <div>
+        <button
+          type="submit"
+          class="btn color-template-one mt-3 ms-3"
+          (click)="openExerciseModal(workout._id)"
+        >
+          Add Exercise
+        </button>
+        <button
+          class="btn color-template-two ms-3 mt-3"
+          (click)="deleteWorkout(workout._id)"
+        >
+          Delete Workout
+        </button>
+      </div>
     </h1>
     <div class="text-center row m-4">
-      <div></div>
       <div
-        class="col-12 col-md-6 col-lg-4 card custom-card p-0"
+        class="col-12 col-md-6 col-lg-4 card custom-card p-0 mb-4"
         *ngFor="let exercise of workout.exercises"
       >
-        <div class="card-header bg-secondary text-light mb-2">
-          <h3 class="m-3">
+        <div class="card-header mb-2 card-header-color">
+          <h2 class="m-3">
             <strong>{{ exercise.title }}</strong>
-          </h3>
+          </h2>
         </div>
 
-        <p><strong>Sets:</strong> {{ exercise.sets }}</p>
+        <h3><strong>Sets:</strong> {{ exercise.sets }}</h3>
 
         <strong>Reps Per Set:</strong>
-        <p>{{ exercise.reps | formatWithCommasAndSpaces }}</p>
+        <h3>{{ exercise.reps | formatWithCommasAndSpaces }}</h3>
 
         <strong>Weight Per Rep:</strong>
-        <p>{{ exercise.weight | formatWithCommasAndSpaces }}</p>
+        <h3>{{ exercise.weight | formatWithCommasAndSpaces }}</h3>
         <div class="text-center">
           <button
-            class="btn btn-danger mb-3"
+            class="btn color-template-two mb-3"
             (click)="deleteExercise(workout._id, exercise._id)"
           >
             Delete Exercise
@@ -78,16 +80,17 @@
                 <div class="form-group mb-2">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control custom-input"
                     formControlName="title"
                     placeholder="Enter exercise title"
                     required
                   />
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-2">
                   <input
                     type="number"
-                    class="form-control"
+                    min="0"
+                    class="form-control custom-input"
                     formControlName="sets"
                     placeholder="Enter number of sets"
                     required
@@ -96,16 +99,16 @@
                 <div class="form-group mb-2">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control custom-input"
                     formControlName="reps"
                     placeholder="Enter number of reps per set (e.g. 10, 9, 8)"
                     required
                   />
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control custom-input"
                     formControlName="weight"
                     placeholder="Enter weight for each rep (e.g. 100, 95, 90)"
                     required
@@ -116,14 +119,14 @@
             <div class="modal-footer">
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn color-template-one"
                 (click)="addExercise()"
               >
                 Add Exercise
               </button>
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn color-template-two"
                 data-dismiss="modal"
                 (click)="closeExerciseModal()"
               >
@@ -156,7 +159,7 @@
         <form [formGroup]="workoutForm">
           <input
             type="text"
-            class="form-control"
+            class="form-control custom-input"
             id="title"
             formControlName="title"
             placeholder="Enter workout title"
@@ -165,12 +168,16 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        <button
+          type="submit"
+          class="btn color-template-one"
+          (click)="onSubmit()"
+        >
           Add Workout
         </button>
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn color-template-two"
           data-dismiss="modal"
           (click)="closeWorkoutModal()"
         >

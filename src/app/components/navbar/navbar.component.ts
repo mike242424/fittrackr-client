@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +8,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NavbarComponent {
   title = 'Fit Trackr';
+  hideButton: boolean = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.hideButton = event.url === '/search';
+      }
+    });
+  }
 
   openWorkoutModal() {
     const workoutModalDiv = document.getElementById('workoutModal');

@@ -1,10 +1,10 @@
-<h1 class="text-center">Search Exercises By Muscle</h1>
+<h1 class="text-center mb-2"><strong>Search Exercises By Muscle</strong></h1>
 <div class="row">
   <div class="col-10 offset-1 col-md-6 offset-md-3">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
+      <div class="form-group mb-4">
         <select
-          class="form-select"
+          class="form-select custom-select"
           formControlName="muscle"
           (ngModelChange)="onSubmit()"
         >
@@ -15,16 +15,27 @@
         </select>
       </div>
     </form>
+  </div>
+</div>
 
-    <div class="mt-4" *ngIf="exercises.length > 0">
-      <div *ngFor="let exercise of exercises">
-        <h3><strong>Name:</strong> {{ exercise.name }}</h3>
-        <p><strong>Muscle:</strong> {{ exercise.muscle }}</p>
-
-        <p><strong>Type:</strong> {{ exercise.type }}</p>
-        <p><strong>Difficulty:</strong> {{ exercise.difficulty }}</p>
-        <p><strong>Instructions:</strong> {{ exercise.instructions }}</p>
-      </div>
-    </div>
+<div class="mt-2 row" *ngIf="exercises.length > 0">
+  <div
+    class="card custom-card p-4 mb-4 col-10 offset-1 col-md-6 offset-md-3"
+    *ngFor="let exercise of exercises"
+  >
+    <h2><strong>Name:</strong> {{ exercise.name | capitalizeFirstLetter }}</h2>
+    <h3>
+      <strong>Muscle:</strong>
+      {{ exercise.muscle | formatExerciseType | capitalizeFirstLetter }}
+    </h3>
+    <h3>
+      <strong>Type:</strong>
+      {{ exercise.type | capitalizeFirstLetter }}
+    </h3>
+    <h3>
+      <strong>Difficulty:</strong>
+      {{ exercise.difficulty | capitalizeFirstLetter }}
+    </h3>
+    <h3><strong>Instructions:</strong> {{ exercise.instructions }}</h3>
   </div>
 </div>

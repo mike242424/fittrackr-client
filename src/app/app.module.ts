@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchExercisesComponent } from './components/search-exercises/search-exercises.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CapitalizeFirstLetterPipe } from './custom-pipes/capitalize-first-letter.pipe';
+import { FormatExerciseTypePipe } from './custom-pipes/format-exercise-type.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     ParseNumberArrayPipe,
     SearchExercisesComponent,
+    CapitalizeFirstLetterPipe,
+    FormatExerciseTypePipe,
   ],
   imports: [
     BrowserModule,

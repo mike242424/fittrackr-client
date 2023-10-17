@@ -1,0 +1,29 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div {
+  color: #072a40 !important;
+}
+
+.custom-select:focus {
+  border: 1px solid #072a40;
+  box-shadow: 0 0 30px #072a40;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+select {
+  color: #072a40 !important;
+}
+
+.custom-card {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #072a40 !important;
+}

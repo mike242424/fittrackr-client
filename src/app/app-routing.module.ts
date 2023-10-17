@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { WorkoutListComponent } from './components/workout/workout-list.component';
 import { SearchExercisesComponent } from './components/search-exercises/search-exercises.component';
 
-
 const routes: Routes = [
   { path: '', component: WorkoutListComponent },
-  { path: 'search', component: SearchExercisesComponent },
+  {
+    path: 'search',
+    component: SearchExercisesComponent,
+    // data: { isSearchPage: true },
+  },
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,3 +1,38 @@
 .title {
     font-size: 30px;
+    color: #072a40 !important;
+}
+
+.navbar-color {
+    background-color: #18b7be !important;
+}
+
+.color-template-one {
+    background-color: #072a40 !important;
+    color: #f9f7f0 !important;
+}
+
+.color-template-one:hover {
+    background-color: #2a536c !important;
+    color: #f9f7f0 !important;
+}
+
+.color-template-two {
+    background-color: #178ca4 !important;
+    color: #f9f7f0 !important;
+}
+
+.color-template-two:hover {
+    background-color: #0e5968 !important;
+    color: #f9f7f0 !important;
+}
+
+.color-template-three {
+    background-color: #f9f7f0 !important;
+    color: #072a40 !important;
+}
+
+.color-template-three:hover {
+    background-color: #e4e3dc !important;
+    color: #072a40 !important;
 }
