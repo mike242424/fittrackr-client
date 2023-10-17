@@ -27,3 +27,13 @@ select {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
   border: 1px solid #072a40 !important;
 }
+
+.color-template-two {
+  background-color: #178ca4 !important;
+  color: #f9f7f0 !important;
+}
+
+.color-template-two:hover {
+  background-color: #0e5968 !important;
+  color: #f9f7f0 !important;
+}

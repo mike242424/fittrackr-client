@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutService } from '../../services/workout.service';
 import { ExerciseService } from '../../services/exercise.service';
 
+
 @Component({
   selector: 'app-workout-list',
   templateUrl: './workout-list.component.html',
@@ -13,7 +14,6 @@ export class WorkoutListComponent implements OnInit {
   workoutForm: FormGroup;
   exerciseForm: FormGroup;
   showModal = false;
-  exercise: any;
   dataLoaded = false;
   currentWorkoutId: number = 0;
 
@@ -105,6 +105,7 @@ export class WorkoutListComponent implements OnInit {
       .map((value: string) => Number(value.trim()));
 
     const exerciseData = {
+
       title: title,
       sets: sets,
       reps: reps,

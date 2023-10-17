@@ -8,11 +8,8 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchExercisesComponent,
-    // data: { isSearchPage: true },
   },
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

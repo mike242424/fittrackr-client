@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +17,8 @@ export class SearchExerciseService {
       'X-Api-Key': this.apiKey,
     });
 
-    return this.http.get(`${this.apiUrl}?muscle=${muscle}`, { headers });
+    const params = new HttpParams().set('muscle', muscle);
+
+    return this.http.get(`${this.apiUrl}`, { headers, params });
   }
 }
