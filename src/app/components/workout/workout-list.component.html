@@ -1,17 +1,26 @@
 <div *ngIf="!dataLoaded">
   <div class="text-center">
-    <mat-spinner class="custom-spinner"></mat-spinner>
+    <div class="custom-spinner mt-5 mb-5"></div>
   </div>
 </div>
 
 <div *ngIf="dataLoaded && workouts.length === 0">
-  <h1 class="text-center">No workouts have been added yet</h1>
+  <h1 class="text-center"><strong>No workouts have been added yet</strong></h1>
 </div>
 
 <div *ngIf="dataLoaded && workouts.length > 0">
   <ng-container *ngFor="let workout of workouts">
-    <h1 class="text-center mb-4 workout-title">
+    <h1 class="text-center workout-title">
       <strong>{{ workout.title }}</strong>
+      <div class="row mt-2">
+        <div class="col text-end">
+          <h4>Location: {{ workout.location }}</h4>
+        </div>
+        <div class="col text-start">
+          <h4>Date: {{ workout.createdAt | dateFormat }}</h4>
+        </div>
+      </div>
+
       <div>
         <button
           type="submit"
@@ -159,10 +168,16 @@
         <form [formGroup]="workoutForm">
           <input
             type="text"
-            class="form-control custom-input"
-            id="title"
+            class="form-control custom-input mb-2"
             formControlName="title"
             placeholder="Enter workout title"
+            required
+          />
+          <input
+            type="text"
+            class="form-control custom-input mb-2"
+            formControlName="location"
+            placeholder="Enter workout location"
             required
           />
         </form>

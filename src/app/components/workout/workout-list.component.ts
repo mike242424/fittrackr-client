@@ -24,6 +24,7 @@ export class WorkoutListComponent implements OnInit {
   ) {
     this.workoutForm = fb.group({
       title: ['', Validators.required],
+      location: ['', Validators.required],
     });
 
     this.exerciseForm = fb.group({
@@ -61,8 +62,9 @@ export class WorkoutListComponent implements OnInit {
     }
 
     const title = this.workoutForm.value.title;
+    const location = this.workoutForm.value.location;
 
-    this.workoutService.createWorkout({ title }).subscribe(
+    this.workoutService.createWorkout({ title, location }).subscribe(
       (response) => {
         this.workoutForm.reset();
 

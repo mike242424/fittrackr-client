@@ -14,6 +14,7 @@ export class SearchExercisesComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   isLoading: boolean = false;
+  selectedMuscle: string = '';
   private subscription: Subscription | undefined;
 
   muscles = [
@@ -34,8 +35,6 @@ export class SearchExercisesComponent implements OnInit, OnDestroy {
     'Traps',
     'Triceps',
   ];
-
-  selectedMuscle: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,6 +75,7 @@ export class SearchExercisesComponent implements OnInit, OnDestroy {
     if (this.isLoading || this.exercises.length === 0) {
       return;
     }
+    
 
     const scrollPosition = window.innerHeight + window.scrollY;
     const pageHeight = document.body.offsetHeight;
@@ -92,6 +92,8 @@ export class SearchExercisesComponent implements OnInit, OnDestroy {
     }
 
     this.currentPage = 1;
+    this.exercises = [];
+    this.isLoading = true;
     this.fetchExercisesByMuscle();
   }
 
@@ -101,6 +103,7 @@ export class SearchExercisesComponent implements OnInit, OnDestroy {
     }
 
     this.isLoading = true;
+
     let muscle = this.searchForm.value.muscle;
 
     muscle = muscle.toLowerCase().replace(/\s/g, '_');

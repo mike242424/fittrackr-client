@@ -15,7 +15,7 @@ export class WorkoutService {
     return this.http.get(this.apiUrl);
   }
 
-  createWorkout(workoutData: { title: string }): Observable<any> {
+  createWorkout(workoutData: { title: string, location: string }): Observable<any> {
     return this.http.post(this.apiUrl, workoutData);
   }
 

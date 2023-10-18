@@ -4,61 +4,14 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
 }
 
-
-p, h1, h2, h3, h4, h5, h6, div {
-  color: #072a40 !important;
-}
-
-.custom-card {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box !important;
-  border: 1px solid #072a40 !important;
-  z-index: 1;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-}
-
 .blur-modal {
   backdrop-filter: blur(5px);
   background: rgba(0, 0, 0, 0.7);
 }
 
-.custom-spinner {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  margin-top: -25px;
-  margin-left: -50px;
-  color: #072a40 !important;
-}
-
 .card-header-color {
   background-color: #18b7be !important;
   color: #fff !important;
-}
-
-.color-template-one {
-    background-color: #072a40 !important;
-    color: #f9f7f0 !important;
-}
-
-.color-template-one:hover {
-    background-color: #2a536c !important;
-    color: #f9f7f0 !important;
-}
-
-.color-template-two {
-    background-color: #178ca4 !important;
-    color: #f9f7f0 !important;
-}
-
-.color-template-two:hover {
-    background-color: #0e5968 !important;
-    color: #f9f7f0 !important;
 }
 
 .custom-input:focus {

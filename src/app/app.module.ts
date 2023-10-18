@@ -15,6 +15,7 @@ import { SearchExercisesComponent } from './components/search-exercises/search-e
 import { AppRoutingModule } from './app-routing.module';
 import { CapitalizeFirstLetterPipe } from './custom-pipes/capitalize-first-letter.pipe';
 import { FormatExerciseTypePipe } from './custom-pipes/format-exercise-type.pipe';
+import { DateFormatPipe } from './custom-pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormatExerciseTypePipe } from './custom-pipes/format-exercise-type.pipe
     SearchExercisesComponent,
     CapitalizeFirstLetterPipe,
     FormatExerciseTypePipe,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,
